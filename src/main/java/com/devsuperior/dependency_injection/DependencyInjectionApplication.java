@@ -8,7 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.devsuperior.dependency_injection.entities.Employee;
+import com.devsuperior.dependency_injection.services.PensionService;
 import com.devsuperior.dependency_injection.services.SalaryService;
+import com.devsuperior.dependency_injection.services.TaxService;
 
 @SpringBootApplication
 public class DependencyInjectionApplication implements CommandLineRunner {
@@ -28,7 +30,7 @@ public class DependencyInjectionApplication implements CommandLineRunner {
 		double grossSalary = sc.nextDouble();
 		
 		Employee employee = new Employee(name, grossSalary);
-		SalaryService salaryService = new SalaryService();
+		SalaryService salaryService = new SalaryService(new TaxService(), new PensionService());
 
 		double netSalary = salaryService.netSalary(employee);
 		System.out.printf("Salario liquido = %.2f%n", netSalary);

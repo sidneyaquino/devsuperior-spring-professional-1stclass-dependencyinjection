@@ -3,9 +3,16 @@ package com.devsuperior.dependency_injection.services;
 import com.devsuperior.dependency_injection.entities.Employee;
 
 public class SalaryService {
+   TaxService taxService;
+   PensionService pensionService;
 
-   TaxService taxService = new TaxService();
-   PensionService pensionService = new PensionService();
+   public SalaryService() {
+   }
+
+   public SalaryService(TaxService taxService, PensionService pensionService) {
+      this.taxService = taxService;
+      this.pensionService = pensionService;
+   }
 
    public double netSalary(Employee employee) {
       return employee.getGrossSalary()
