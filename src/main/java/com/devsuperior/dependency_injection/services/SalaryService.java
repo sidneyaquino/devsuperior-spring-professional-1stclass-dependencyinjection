@@ -1,18 +1,16 @@
 package com.devsuperior.dependency_injection.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.devsuperior.dependency_injection.entities.Employee;
 
+@Service
 public class SalaryService {
+   @Autowired
    TaxService taxService;
+   @Autowired
    PensionService pensionService;
-
-   public SalaryService() {
-   }
-
-   public SalaryService(TaxService taxService, PensionService pensionService) {
-      this.taxService = taxService;
-      this.pensionService = pensionService;
-   }
 
    public double netSalary(Employee employee) {
       return employee.getGrossSalary()
